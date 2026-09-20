@@ -1,7 +1,0 @@
-﻿
-=== templates_tgs2 5 ta sample ===
-  001.json: NO LOGO GROUP FOUND
-  002.json: NO LOGO GROUP FOUND
-  003.json: NO LOGO GROUP FOUND
-  004.json: NO LOGO GROUP FOUND
-  005.json: NO LOGO GROUP FOUND
