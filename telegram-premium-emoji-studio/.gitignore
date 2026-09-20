@@ -1,0 +1,39 @@
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Data / runtime ---
+backend/data/
+data/
+*.db
+*.sqlite3
+output/
+render_tmp/
+*.log
+sonnet.lock
+
+# --- Node / frontend ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+.DS_Store
+
+# --- Offline typecheck helper (dev only) ---
+frontend/typecheck/
+
+# --- Editors ---
+.idea/
+.vscode/

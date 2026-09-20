@@ -1,0 +1,51 @@
+# ============================================================================
+# Telegram Premium Emoji Studio — production compose
+# Usage:
+#   cp .env.example .env   # fill in BOT_TOKEN, ADMIN_IDS, SECRET_KEY, ...
+#   docker compose up -d --build
+# Frontend -> http://localhost:8080  (proxies /api to backend)
+# ============================================================================
+
+services:
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      # Default to SQLite on a mounted volume; override in .env for PostgreSQL.
+      DATABASE_URL: ${DATABASE_URL:-sqlite+aiosqlite:////app/data/app.db}
+    volumes:
+      - backend_data:/app/data
+    restart: unless-stopped
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: /api/v1
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  # --- Optional PostgreSQL (uncomment + set DATABASE_URL in .env to use) ---
+  # db:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     POSTGRES_USER: emoji
+  #     POSTGRES_PASSWORD: emoji
+  #     POSTGRES_DB: emoji
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+volumes:
+  backend_data:
+  # pg_data:

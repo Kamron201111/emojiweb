@@ -1,0 +1,27 @@
+# --- Web framework ---
+fastapi>=0.110,<1
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+
+# --- Data / validation ---
+pydantic>=2.6,<3
+pydantic-settings>=2.2
+itsdangerous>=2.1
+
+# --- Database (async) ---
+SQLAlchemy>=2.0,<3
+aiosqlite>=0.20
+# For PostgreSQL, also install: asyncpg>=0.29
+alembic>=1.13
+
+# --- HTTP client (Telegram Bot API) ---
+httpx>=0.27
+
+# --- Rendering engine (preserved from original project) ---
+fonttools>=4.50
+Pillow>=10.0
+lottie>=0.7.0
+
+# --- Testing ---
+pytest>=8.0
+pytest-asyncio>=0.23

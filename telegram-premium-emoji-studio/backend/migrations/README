@@ -1,0 +1,7 @@
+Alembic migrations for Telegram Premium Emoji Studio.
+
+Local/SQLite dev auto-creates tables via init_db() on startup.
+For production (PostgreSQL), generate and apply migrations:
+
+    alembic revision --autogenerate -m "init"
+    alembic upgrade head
