@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tg-bg: #f4f5fb;
+  --tg-card: #ffffff;
+  --tg-card-2: #f0f1f7;
+  --tg-text: #14151a;
+  --tg-hint: #7c7f8e;
+  --tg-link: #4f46e5;
+  --tg-accent: #6366f1;
+  --tg-border: rgba(20, 21, 26, 0.08);
+}
+
+.dark {
+  --tg-bg: #0d0d16;
+  --tg-card: #17182a;
+  --tg-card-2: #1f2138;
+  --tg-text: #f2f3fb;
+  --tg-hint: #9497ad;
+  --tg-link: #a5b4fc;
+  --tg-accent: #818cf8;
+  --tg-border: rgba(255, 255, 255, 0.08);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl bg-tg-card border border-tg-border shadow-soft;
+  }
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 font-semibold
+      transition-all active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn bg-tg-card-2 text-tg-text border border-tg-border;
+  }
+  .btn-gold {
+    @apply btn text-black;
+    background: linear-gradient(135deg, #ffd76a, #f5b301);
+  }
+  .input {
+    @apply w-full rounded-2xl bg-tg-card-2 border border-tg-border px-4 py-3 text-tg-text
+      placeholder:text-tg-hint outline-none focus:border-brand-500 transition-colors;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium
+      bg-tg-card-2 border border-tg-border;
+  }
+  .skeleton {
+    @apply relative overflow-hidden bg-tg-card-2 rounded-2xl;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+  }
+}
+
+/* Hide scrollbars but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.safe-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+}
